@@ -3,16 +3,19 @@ import React, { Component } from 'react';
 import classes from './Weather.css';
 import Cloudy from '../assets/images/cloudy.PNG';
 
-class Weather extends Component {
-    render () {
+const weather = (props) => {
 
     return (
-    <div className={classes.WeatherDiv}>
-        <p>This is the weather app</p>
-        <img src={Cloudy} alt="Cloudy Image" />
-    </div>
+        <div className={classes.WeatherDiv}>
+            <div className={classes.TestimonialContainer}>
+                <p>{props.date}</p>
+                <img src={Cloudy} 
+                alt="Avatar" />
+                <p>{props.temp}</p>
+            </div>
+        </div>
     );
-}
+    
 }
 
-export default Weather;
+export default weather;
