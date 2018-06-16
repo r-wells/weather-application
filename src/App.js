@@ -1,33 +1,39 @@
 import React, { Component } from 'react';
 import Weather from './components/Weather';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import classes from './App.css';
+import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
 
+  state = {
+    forecast: [
+      { date: 'Monday', temp: 90},
+      { date: 'Tuesday', temp: 90},
+      { date: 'Wenesday', temp: 90},
+      { date: 'Thursday', temp: 90},
+      { date: 'Friday', temp: 90},
+      { date: 'Saturday', temp: 90},
+      { date: 'Sunday', temp: 90}
+    ]
+  }
+
+  displayHourHandler = () => {
+    //console.log('was clicked');
+    
+  }
+
   render() {
-
-    var d = new Date();
-    var weekday = new Array(7);
-    weekday[0] =  "Sunday";
-    weekday[1] = "Monday";
-    weekday[2] = "Tuesday";
-    weekday[3] = "Wednesday";
-    weekday[4] = "Thursday";
-    weekday[5] = "Friday";
-    weekday[6] = "Saturday";
-
-    var n = weekday[d.getDay()];
 
     return (
       <div className={classes.App}>
           <Header />
         <div className={classes.WeatherWrapper}>
-          <Weather date={n} temp="90" />
-          <Weather date={n} temp="90" />
-          <Weather date={weekday[(d.getDay()) + 2]} temp="90" />
-          <Weather date={weekday[(d.getDay()) + 3]} temp="90" />
-          <Weather date={weekday[(d.getDay()) + 4]} temp="90" />
+          <Weather onClick={this.displayHourHandler} date={this.state.forecast[0].date} temp={this.state.forecast[0].temp} />
+          <Weather onClick={this.displayHourHandler} date={this.state.forecast[1].date} temp={this.state.forecast[1].temp} />
+          <Weather onClick={this.displayHourHandler} date={this.state.forecast[2].date} temp={this.state.forecast[2].temp} />
+          <Weather onClick={this.displayHourHandler} date={this.state.forecast[3].date} temp={this.state.forecast[3].temp} />
+          <Weather onClick={this.displayHourHandler} date={this.state.forecast[4].date} temp={this.state.forecast[4].temp} />        
         </div>
       </div>
     );
