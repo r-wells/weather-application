@@ -6,7 +6,7 @@ import Cloudy from '../../assets/images/cloudy.PNG';
 const subweather = (props) => {
 
     return (
-        <div onClick={props.onClick}>
+        <div onClick={props.click}>
             <div className={classes.TestimonialContainer}>
                 <p>{props.date}</p>
                 <img src={Cloudy} 

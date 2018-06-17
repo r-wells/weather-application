@@ -1,0 +1,16 @@
+.Input {
+    width: auto;
+}
+
+.InputDiv {
+    margin: 0 auto;
+    width: 200px;
+}
+
+.Button {
+    background-color: green;
+    border-radius: 10px;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}

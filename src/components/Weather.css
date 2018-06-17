@@ -1,6 +1,14 @@
 .WeatherDiv {
-    width: 98%;
+    width: 95%;
     margin: 0 auto;
     display: flex;
     align-items: center;
+}
+
+@media (max-width: 767px) {
+    .WeatherDiv {
+        width: 95%;
+        margin: 0 auto;
+        display: block;
+    }
 }

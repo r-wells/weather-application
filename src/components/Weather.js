@@ -12,13 +12,13 @@ class Weather extends Component {
           { date: 'Wenesday', temp: 90},
           { date: 'Thursday', temp: 90},
           { date: 'Friday', temp: 90},
-          { date: 'Saturday'},
-          { date: 'Sunday'}
+          { date: 'Saturday', temp: 90},
+          { date: 'Sunday', temp: 90}
         ],
         showBottom: false
       }
     
-      displayHourHandler = () => {
+      displayBottomHandler = () => {
         const doesShow = this.state.showBottom;
         this.setState({showBottom: !doesShow});
       }
@@ -27,8 +27,9 @@ class Weather extends Component {
 
     return (
         <div className={classes.WeatherDiv}>
-            {this.state.forecast.map(day => {
-                return <Subweather 
+            {this.state.forecast.map((day, index) => {
+                return <Subweather
+                click={() => this.displayBottomHandler(index)} 
                 date={day.date}
                 temp={day.temp} />
             })}
