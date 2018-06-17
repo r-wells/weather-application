@@ -3,7 +3,7 @@ import React from 'react';
 import classes from './Weather.css';
 import Cloudy from '../assets/images/cloudy.PNG';
 
-const weather = (props) => {
+const subweather = (props) => {
 
     return (
         <div onClick={props.onClick} className={classes.WeatherDiv}>
@@ -12,13 +12,10 @@ const weather = (props) => {
                 <img src={Cloudy} 
                 alt="Avatar" />
                 <p>{props.temp}</p>
-                <div className={props.Display}>
-                    <p>Displays an hourly forecast when clicked</p>
-                </div>
             </div>
         </div>
     );
     
 }
 
-export default weather;
+export default subweather;
