@@ -1,38 +1,6 @@
 .WeatherDiv {
-    width: 200px;
-    height: 100px;
-    display: inline-block;
-}
-
-/* Style the container with a rounded border, grey background and some padding and margin */
-.TestimonialContainer {
-    border: 2px solid #ccc;
-    background-color: #fff;
-    border-radius: 5px;
-    padding: 3px;
-	color: #000;
-}
-
-.TestimonialContainer::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-/* Float images inside the container to the left. Add a right margin, and style the image as a circle */
-.TestimonialContainer img {
-    margin: auto;
-    border-radius: 20%;
-    width: 80%;
-}
-
-/* Add media queries for responsiveness. This will center both the text and the image inside the container */
-@media (max-width: 500px) {
-  .TestimonialContainer {
-    text-align: center;
-  }
-}
-
-.HourlyForecast {
-    color: red;
+    width: 98%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
 }

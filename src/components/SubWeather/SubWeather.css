@@ -1,23 +1,12 @@
-.WeatherDiv {
-    width: 200px;
-    height: 100px;
-    display: inline-block;
-}
-
 /* Style the container with a rounded border, grey background and some padding and margin */
 .TestimonialContainer {
     border: 2px solid #ccc;
     background-color: #fff;
     border-radius: 5px;
     padding: 3px;
-	color: #000;
+    color: #000;
 }
 
-.TestimonialContainer::after {
-    content: "";
-    clear: both;
-    display: table;
-}
 
 /* Float images inside the container to the left. Add a right margin, and style the image as a circle */
 .TestimonialContainer img {
