@@ -11,7 +11,7 @@ const subweather = (props) => {
                 <p>{props.date}</p>
                 <img src={Cloudy} 
                 alt="Avatar" />
-                <p>{props.temp}</p>
+                <p>{props.tempMin} {props.tempMax}</p>
             </div>
         </div>
     );

@@ -5,9 +5,9 @@ import Subweather from './SubWeather/SubWeather';
 import classes from './Weather.css';
 
 class Weather extends Component {
-
+ 
     state = {
-        forecasts: [{}]
+        forecasts: []
       }
 
     componentDidMount () {
@@ -26,10 +26,13 @@ class Weather extends Component {
     render() {
 
         const projections = this.state.forecasts.map(forecast => {
+
             return <Subweather
                     date={forecast.dt_txt}
-                    temp={forecast.temp}
-                    key={forecast.id}  /> ;
+                    tempMin={forecast.main.temp_min}
+                    tempMax={forecast.main.temp_max}
+                    key={forecast.id}  
+                    /> ;
         });
 
         return (
