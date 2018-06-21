@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 import Subweather from '../SubWeather/SubWeather';
 import classes from './Projections.css';
@@ -24,18 +24,21 @@ class Projections extends Component {
 
         const projections = this.state.forecasts.map(forecast => {
 
-            return <Subweather
-                    date={forecast.dt_txt}
-                    tempMin={forecast.main.temp_min}
-                    tempMax={forecast.main.temp_max}
-                    key={forecast.id}  
-                    /> ;
+            return (<Link to={forecast.dt_txt}
+                key={forecast.dt}>
+            <Subweather
+                date={forecast.dt_txt}
+                tempMin={forecast.main.temp_min}
+                tempMax={forecast.main.temp_max} />
+            </Link>) ;
         });
+
+        console.log(projections);
 
         return(
             <section className={classes.ProjectionsDiv}>
-                <Link to="/">{projections[0]}</Link>
-                <Link to="/2">{projections[8]}</Link>
+                {projections[0]}
+                {projections[8]}
                 {projections[16]}
                 {projections[24]}
                 {projections[32]}
