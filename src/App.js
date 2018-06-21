@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Weather from './components/Weather';
+import { BrowserRouter } from 'react-router-dom'
+import Weather from './containers/Weather';
 import Header from './components/Header/Header';
 import Input from './components/Input/Input';
 //import SubWeather from './components/SubWeather/SubWeather';
@@ -30,11 +31,13 @@ class App extends Component {
   }
 
     return (
-      <div className={classes.App}>
-          <Header />
-          <Input onClick={this.toggleWeatherHandler} />
-          {display}
-      </div>
+      <BrowserRouter>
+        <div className={classes.App}>
+            <Header />
+            <Input onClick={this.toggleWeatherHandler} />
+            {display}
+        </div>
+      </BrowserRouter>
     );
   }
 }

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import { Route, Link } from 'react-router-dom';
 
-import Subweather from './SubWeather/SubWeather';
-import classes from './Weather.css';
+import Subweather from '../SubWeather/SubWeather';
+import classes from './Projections.css';
 
-class Weather extends Component {
- 
+class Projections extends Component {
+
     state = {
         forecasts: []
       }
@@ -13,17 +14,13 @@ class Weather extends Component {
     componentDidMount () {
         axios.get('http://api.openweathermap.org/data/2.5/forecast?q=London,uk&appid=77b11a8fa7b1f45be18d23910a441f75')
             .then(response => {
+                //const forecastData = response.data.list.slice(0,1);
                 this.setState({forecasts: response.data.list});
-                console.log(this.state.forecasts);
+                //console.log(this.state.forecasts);
             });
     }
-    
-      displayBottomHandler = () => {
-        const doesShow = this.state.showBottom;
-        this.setState({showBottom: !doesShow});
-      }
 
-    render() {
+    render () {
 
         const projections = this.state.forecasts.map(forecast => {
 
@@ -35,10 +32,10 @@ class Weather extends Component {
                     /> ;
         });
 
-        return (
-            <div className={classes.WeatherDiv}>
-                {projections[0]}
-                {projections[8]}
+        return(
+            <section className={classes.ProjectionsDiv}>
+                <Link to="/">{projections[0]}</Link>
+                <Link to="/2">{projections[8]}</Link>
                 {projections[16]}
                 {projections[24]}
                 {projections[32]}
@@ -48,9 +45,9 @@ class Weather extends Component {
                         <p>Displays an hourly forecast when clicked</p>
                     </div>: null
                 } } */}
-            </div>
+            </section>
         );
     }
 }
 
-export default Weather;
+export default Projections;

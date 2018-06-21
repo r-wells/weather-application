@@ -1,4 +1,4 @@
-.WeatherDiv {
+.ProjectionsDiv {
     width: 95%;
     margin: 0 auto;
     display: flex;
@@ -6,7 +6,7 @@
 }
 
 @media (max-width: 767px) {
-    .WeatherDiv {
+    .ProjectionsDiv {
         width: 95%;
         margin: 0 auto;
         display: block;
