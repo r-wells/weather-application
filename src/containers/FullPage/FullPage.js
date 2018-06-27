@@ -1,12 +1,57 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
-import classes from './FullPage.css';
+import Subweather from '../../components/SubWeather/SubWeather';
+import classes from './FullPage.css'; 
 
 class FullPage extends Component {
+
+    state = {
+        loadedPageForecasts: []
+    } 
+
+    componentDidMount () {
+        //console.log(this.props);
+
+        if (this.props.match.params.id) {
+            axios.get('http://api.openweathermap.org/data/2.5/forecast?q=London,uk&appid=77b11a8fa7b1f45be18d23910a441f75')
+            .then(response => {
+                //const forecastData = response.data.list.;
+                this.setState({loadedPageForecasts: response.data.list});
+            });
+        }    
+
+    }
+
     render() {
 
+        const paramsid = this.state.loadedPageForecasts;
+        console.log(paramsid);
+
+        const filteredArray = (arr, key, value) => {
+            let newArray = [];
+            for(let i = 0; i < arr.length; i++) {
+              if(arr[i][key] === value) {
+                let x = arr[i];
+                console.log(x);
+                // newArray.push(arr[i]);
+                }
+            }
+            return newArray;
+        }
+        let newForecasts = [];
+        newForecasts = filteredArray((paramsid, this.state.loadedPageForecasts.dt_txt, "2018-06-28 00:00:00"));
+
+        console.log(newForecasts);
+
         return(
-            <h1>New Page!!</h1>
+            <div>
+                <h1>Hourly Weather For {this.props.match.params.id}</h1>
+                <Subweather
+                    date={this.props.match.params.id}
+                    tempMin={this.props.tempmin}
+                />
+            </div>
         );
 
     }

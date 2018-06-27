@@ -8,11 +8,7 @@ class Header extends Component {
             <div>
                     <nav>
                         <ul>
-                            <li><a href ="/">Today</a></li>
-                            <li><a href ="/2">Tomorrow</a></li>
-                            <li><a href ="/3">Day 3</a></li>
-                            <li><a href ="/4">Day 4</a></li>
-                            <li><a href ="/5">Day 5</a></li>
+                            <li><a href ="/">Home</a></li>
                         </ul>
                     </nav>
                 <header className={classes.AppHeader}>

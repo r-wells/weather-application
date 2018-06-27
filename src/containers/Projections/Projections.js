@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-import Subweather from '../SubWeather/SubWeather';
+import Subweather from '../../components/SubWeather/SubWeather';
 import classes from './Projections.css';
 
 class Projections extends Component {
@@ -25,12 +25,13 @@ class Projections extends Component {
         const projections = this.state.forecasts.map(forecast => {
 
             return (<Link to={forecast.dt_txt}
-                key={forecast.dt}>
-            <Subweather
-                date={forecast.dt_txt}
-                tempMin={forecast.main.temp_min}
-                tempMax={forecast.main.temp_max} />
-            </Link>) ;
+                        key={forecast.dt}
+                        tempmin={forecast.main.temp_min}>
+                    <Subweather
+                        date={forecast.dt_txt}
+                        tempMin={forecast.main.temp_min}
+                        tempMax={forecast.main.temp_max} />
+                    </Link>) ;
         });
 
         console.log(projections);
