@@ -28,22 +28,23 @@ class FullPage extends Component {
         const paramsid = this.state.loadedPageForecasts;
         console.log(paramsid);
 
-        const filteredArray = (arr, key, value) => {
-            let newArray = [];
-            for(let i = 0; i < arr.length; i++) {
-              if(arr[i][key] === value) {
-                let x = arr[i];
-                console.log(x);
-                // newArray.push(arr[i]);
-                }
-            }
-            return newArray;
-        }
-        let newForecasts = [];
-        newForecasts = filteredArray((paramsid, this.state.loadedPageForecasts.dt_txt, "2018-06-28 00:00:00"));
+        let result = paramsid.filter(obj => {
+            return obj.dt_txt.includes("2018-06-28");
+        });
 
-        console.log(newForecasts);
+        console.log(result);
 
+        // const filteredArray = (arr, key, value) => {
+        //     let newArray = [];
+        //     for(let i = 0; i < arr.length; i++) {
+        //       if(arr[i][key] === value) {
+        //         newArray.push(arr[i]);
+        //         }
+        //     }
+        //     return newArray;
+        // }
+        // let newForecasts = [];
+        // newForecasts = filteredArray((paramsid, paramsid.dt_txt, "2018-06-28 00:00:00"));
         return(
             <div>
                 <h1>Hourly Weather For {this.props.match.params.id}</h1>
