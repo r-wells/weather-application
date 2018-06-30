@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-import Subweather from '../../components/SubWeather/SubWeather';
+import FullPageSubWeather from '../../components/FullPageSubWeather/FullPageSubWeather';
 import classes from './FullPage.css'; 
 
 class FullPage extends Component {
@@ -14,7 +14,7 @@ class FullPage extends Component {
         //console.log(this.props);
 
         if (this.props.match.params.id) {
-            axios.get('http://api.openweathermap.org/data/2.5/forecast?q=London,uk&appid=77b11a8fa7b1f45be18d23910a441f75')
+            axios.get('http://api.openweathermap.org/data/2.5/forecast?q=New York,us&appid=77b11a8fa7b1f45be18d23910a441f75')
             .then(response => {
                 //const forecastData = response.data.list.;
                 this.setState({loadedPageForecasts: response.data.list});
@@ -28,30 +28,34 @@ class FullPage extends Component {
         const paramsid = this.state.loadedPageForecasts;
         console.log(paramsid);
 
+        const todaysDateArray = this.props.match.params.id.split(" ");
+        const todaysDate = todaysDateArray[0];
+        console.log(todaysDate);
+
+        const d = new Date();
+        let n = d.getDay(todaysDate);
+
         let result = paramsid.filter(obj => {
-            return obj.dt_txt.includes("2018-06-28");
+            return obj.dt_txt.includes(todaysDate);
         });
 
         console.log(result);
 
-        // const filteredArray = (arr, key, value) => {
-        //     let newArray = [];
-        //     for(let i = 0; i < arr.length; i++) {
-        //       if(arr[i][key] === value) {
-        //         newArray.push(arr[i]);
-        //         }
-        //     }
-        //     return newArray;
-        // }
-        // let newForecasts = [];
-        // newForecasts = filteredArray((paramsid, paramsid.dt_txt, "2018-06-28 00:00:00"));
+        const projections = result.map(subForecasts => {
+
+            return (
+            <FullPageSubWeather
+                date={todaysDate}
+                time={subForecasts.dt_txt.split(" ")[1]}
+                tempMin={subForecasts.main.temp_min}
+                tempMax={subForecasts.main.temp_max} 
+                weather={subForecasts.weather[0].description} />
+        )});
+
         return(
             <div>
-                <h1>Hourly Weather For {this.props.match.params.id}</h1>
-                <Subweather
-                    date={this.props.match.params.id}
-                    tempMin={this.props.tempmin}
-                />
+                <h1>Hourly Weather For {todaysDate}</h1>
+                {projections}
             </div>
         );
 

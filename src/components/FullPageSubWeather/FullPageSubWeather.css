@@ -1,0 +1,13 @@
+.FullPageSubWeatherDiv {
+    width: 60%;
+    height: auto;
+    border: 1px solid #000;
+    border-radius: 4px;
+    background-color: lightgrey;
+    margin: 10px auto;
+}
+
+.image {
+    width: 50px;
+    height: auto;
+}
