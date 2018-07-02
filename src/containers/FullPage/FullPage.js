@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 
 import FullPageSubWeather from '../../components/FullPageSubWeather/FullPageSubWeather';
-import classes from './FullPage.css'; 
 
 class FullPage extends Component {
 
@@ -25,31 +24,55 @@ class FullPage extends Component {
 
     render() {
 
+        const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+        const months = ['January','February','March','April','May','June','July','August','September','October','November','December'];
+
         const paramsid = this.state.loadedPageForecasts;
         console.log(paramsid);
 
         const todaysDateArray = this.props.match.params.id.split(" ");
         const todaysDate = todaysDateArray[0];
-        console.log(todaysDate);
-
-        const d = new Date();
-        let n = d.getDay(todaysDate);
 
         let result = paramsid.filter(obj => {
             return obj.dt_txt.includes(todaysDate);
         });
 
-        console.log(result);
-
         const projections = result.map(subForecasts => {
+            const d = new Date();
+            let weekday = days[ d.getDay(todaysDate) ];
+            console.log(weekday);
 
+            //let newTempMin =  Math.round((9/5) * (subForecasts.main.temp_min - 273) + 32);
+
+            let newTempMax = Math.round((9/5) * (subForecasts.main.temp_max - 273) + 32);
+
+            let hh = d.getHours();
+            let h = hh;
+            let dd = "AM";
+            if (h >= 12) {
+                h = hh - 12;
+                dd = "PM";
+            }
+            if (h === 0) {
+                h = 12;
+            }
+
+            let minutes = d.getMinutes();
+            let month = months[ d.getMonth() ];
+            let day = d.getDate();
+            
+            // subForecasts.dt_txt.split(" ")[1]
             return (
             <FullPageSubWeather
-                date={todaysDate}
-                time={subForecasts.dt_txt.split(" ")[1]}
-                tempMin={subForecasts.main.temp_min}
-                tempMax={subForecasts.main.temp_max} 
-                weather={subForecasts.weather[0].description} />
+                date={weekday}
+                month={month}
+                day = {day}
+                hours = {h}
+                minutes = {minutes}
+                apm = {dd}
+                tempMax={newTempMax} 
+                weather={subForecasts.weather[0].description}
+                key={subForecasts.dt} />
         )});
 
         return(

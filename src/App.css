@@ -2,3 +2,6 @@
   text-align: center;
   width: auto;
 }
+a:visited, a:link, a:active, a:hover {
+  text-decoration: none;
+}

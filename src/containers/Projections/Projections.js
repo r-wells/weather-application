@@ -24,13 +24,16 @@ class Projections extends Component {
 
         const projections = this.state.forecasts.map(forecast => {
 
+            let newTempMin =  Math.round((9/5) * (forecast.main.temp_min - 273) + 32);
+
+            let newTempMax = Math.round((9/5) * (forecast.main.temp_max - 273) + 32);
+
             return (<Link to={forecast.dt_txt}
-                        key={forecast.dt}
-                        tempmin={forecast.main.temp_min}>
+                        key={forecast.dt}>
                     <Subweather
                         date={forecast.dt_txt}
-                        tempMin={forecast.main.temp_min}
-                        tempMax={forecast.main.temp_max} />
+                        tempMin={newTempMin}
+                        tempMax={newTempMax} />
                     </Link>) ;
         });
 
